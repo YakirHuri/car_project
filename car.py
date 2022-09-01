@@ -135,16 +135,21 @@ def main():
     final_cars_list = []    
     
     maxKim = 130000
-    minYear = 2015
-    maxPrice = 100000
+    minYear = 2013
+    maxPrice = 83000
 
-    check_evry_min = 30
+    check_evry_min = 60
 
     companyHyundai = Company('hyundai', ['"i25"','"sx4"', '"i35"', '"i30"', '"טוסון"' ,'"ix35"'])
     companySuzuki = Company('suzuki',['"sx4"','"ויטרה"', '"איגניס"'])
     companyKia = Company('kia',['"נירו"','"ספורטאז׳"', '"סיד"'])
-    compList = [companyHyundai, companySuzuki, companyKia]
+    companyToyota = Company('toyota',['"chr"','"קורולה"'])
 
+    compList = []
+    # compList.append(companyHyundai)
+    # compList.append(companySuzuki)
+    # compList.append(companyKia)
+    compList.append(companyToyota)
 
     mailsToSend =['yakirhuri21@gmail.com','shellycarme@gmail.com']   
     
@@ -172,6 +177,7 @@ def main():
             print(' check the maker: ' + maker)
             for pag_num in range(50):
 
+                print(pag_num)
                 # Sample URL to fetch the html page
                 url = "https://www.colmobil-tradein.co.il/cars/"+maker+"/?page=" + \
                     str(pag_num)+""
@@ -209,6 +215,8 @@ def main():
                             car = CarEntity()
                             car.fillData(car_raw)
 
+                            
+                            # car.printDate()
 
                             if (checkIfCarModelGood(wantedModels, car.carmodel, car.listprice, maxPrice, car.year, minYear, 
                                 car.kilometers, maxKim)):
@@ -226,10 +234,12 @@ def main():
             # title = ' we found for you '+str(len(final_cars_list)) +' relevant cars'
             now = datetime.now()
             dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
-            file_name = str(dt_string+'.txt')
+            file_name = '../reports/'+str(dt_string+'.txt')
             with open(file_name, "w") as f:
                 
                 f.write(titleFile+'\n')
+                f.write('------------------------------------------------------'+'\n')
+
                 for i in range(len(final_cars_list)):
                     
                     final_cars_list[i].printDate()                    
@@ -245,7 +255,8 @@ def main():
                     f.write('year ' + str(final_cars_list[i].year)+'\n')
                     f.write('patch_text ' + str(final_cars_list[i].patch_text)+'\n')
                     f.write('finish_level ' + str(final_cars_list[i].finish_level)+'\n')
-                    f.write('                           '+'\n')
+                    f.write('------------------------------------------------------'+'\n')
+
             f.close()
 
             #sendMail("yakirhuri21@gmail.com", title, msg)
