@@ -134,9 +134,9 @@ def main():
    
     final_cars_list = []    
     
-    maxKim = 130000
+    maxKim = 200000
     minYear = 2013
-    maxPrice = 83000
+    maxPrice = 120000
 
     check_evry_min = 60
 
@@ -146,9 +146,9 @@ def main():
     companyToyota = Company('toyota',['"chr"','"קורולה"'])
 
     compList = []
-    # compList.append(companyHyundai)
-    # compList.append(companySuzuki)
-    # compList.append(companyKia)
+    compList.append(companyHyundai)
+    compList.append(companySuzuki)
+    compList.append(companyKia)
     compList.append(companyToyota)
 
     mailsToSend =['yakirhuri21@gmail.com','shellycarme@gmail.com']   
@@ -175,7 +175,7 @@ def main():
             maker = compList[comp].maker
             wantedModels = compList[comp].wantedModels
             print(' check the maker: ' + maker)
-            for pag_num in range(50):
+            for pag_num in range(10):
 
                 print(pag_num)
                 # Sample URL to fetch the html page
