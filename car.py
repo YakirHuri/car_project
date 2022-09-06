@@ -136,7 +136,7 @@ def main():
     
     maxKim = 200000
     minYear = 2013
-    maxPrice = 120000
+    maxPrice = 90000
 
     check_evry_min = 60
 
